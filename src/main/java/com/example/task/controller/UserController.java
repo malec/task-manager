@@ -1,12 +1,17 @@
 package com.example.task.controller;
 
 import com.example.task.dto.User;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/user")
-public interface UserController {
-    @PostMapping()
-    public void create(@RequestBody User user);
-    @DeleteMapping()
-    public void delete(@RequestBody User user);
+@RestController("/user")
+public class UserController implements IUserController {
+    @Override
+    public void create(User user) {
+
+    }
+
+    @Override
+    public void delete(User user) {
+
+    }
 }
