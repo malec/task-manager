@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class Assignment{
-    private String username;
-    private String task;
+    private String userId;
+    private String taskId;
 }

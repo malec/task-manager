@@ -6,5 +6,4 @@ import lombok.Data;
 public class Task {
     private String id;
     private String task;
-    private User owner;
 }

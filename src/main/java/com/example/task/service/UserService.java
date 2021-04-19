@@ -18,4 +18,10 @@ public class UserService {
     public void deleteUser(String id) {
         this.users.remove(id);
     }
+    public void assignTask(String userId, String taskId) {
+        this.users.get(userId).setTaskId(taskId);
+    }
+    public void deleteAssignment(String userId) {
+        this.users.get(userId).setTaskId(null);
+    }
 }
