@@ -1,10 +1,8 @@
 package com.example.task.controller;
 
-
 import com.example.task.dto.Task;
 import com.example.task.service.TaskService;
 import com.google.gson.Gson;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -17,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.core.Is.is;
-import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class TaskControllerTest {
@@ -36,7 +33,7 @@ public class TaskControllerTest {
     }
 
     @Test
-    public void createTaskShouldCallServiceToCreate() throws Exception {
+    public void createTaskShouldCreateAndReturnOk() throws Exception {
         Task task = new Task();
         task.setTask("write tests");
         Mockito.doAnswer(x -> {

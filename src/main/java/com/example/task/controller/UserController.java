@@ -12,11 +12,19 @@ public class UserController implements IUserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+    /**
+     * @param user
+     * Create a user via UserService
+     */
     @Override
     public void create(User user) {
         this.userService.createUser(user);
     }
 
+    /**
+     * @param user User DTO with id to delete by
+     */
     @Override
     public void delete(User user) {
         this.userService.deleteUser(user.getId());
