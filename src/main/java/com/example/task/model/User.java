@@ -22,4 +22,11 @@ public class User {
 
     @Column(name = "lastName")
     private String lastName;
+
+    @Column(name="taskId")
+    private String taskId;
+
+    @OneToOne(targetEntity = Task.class)
+    @JoinColumn(name="id", referencedColumnName = "taskId")
+    private Task task;
 }
