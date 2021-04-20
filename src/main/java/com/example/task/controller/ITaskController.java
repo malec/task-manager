@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/task")
 public interface ITaskController {
     @PostMapping()
-    void create(@RequestBody Task user);
+    Task create(@RequestBody Task user);
     @DeleteMapping()
     void delete(@RequestBody Task user);
 }

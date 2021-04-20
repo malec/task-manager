@@ -11,8 +11,8 @@ public class TaskController implements ITaskController {
         this.taskService = taskService;
     }
     @Override
-    public void create(Task task) {
-        this.taskService.createTask(task);
+    public Task create(Task task) {
+        return this.taskService.createTask(task);
     }
 
     @Override
