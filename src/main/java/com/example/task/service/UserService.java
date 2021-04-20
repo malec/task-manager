@@ -1,27 +1,36 @@
 package com.example.task.service;
 
-import com.example.task.dto.User;
+import com.example.task.dto.UserDto;
+import com.example.task.dto.UserDto;
+import com.example.task.model.User;
+import com.example.task.repository.UserRepository;
+import lombok.var;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @Component
 public class UserService {
-    private final Map<String, User> users;
-    public UserService() {
-        this.users = new HashMap<>();
+    private final UserRepository userRepository;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
-    public void createUser(User user) {
-        this.users.put(user.getId(), user);
+    public void createUser(UserDto userDto) {
+        User user = new User();
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        this.userRepository.save(user);
     }
-    public void deleteUser(String id) {
-        this.users.remove(id);
+    public void deleteUser(Long id) {
+        this.userRepository.deleteById(id);
     }
-    public void assignTask(String userId, String taskId) {
-        this.users.get(userId).setTaskId(taskId);
+    public void assignTask(Long userId, String taskId) {
+        var userOptional = this.userRepository.findById(userId);
+        if(userOptional.isPresent()) {
+            var user = userOptional.get();
+            user.setTaskId(taskId);
+            this.userRepository.save(user);
+        }
     }
-    public void deleteAssignment(String userId) {
-        this.users.get(userId).setTaskId(null);
+    public void deleteAssignment(Long userId) {
+//        this.userRepository..get(userId).setTaskId(null);
     }
 }

@@ -1,12 +1,12 @@
 package com.example.task.controller;
 
-import com.example.task.dto.User;
+import com.example.task.dto.UserDto;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
 public interface IUserController {
     @PostMapping()
-    void create(@RequestBody User user);
+    void create(@RequestBody UserDto user);
     @DeleteMapping()
-    void delete(@RequestBody User user);
+    void delete(@RequestBody UserDto user);
 }

@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserDto {
     private String firstName;
     private String lastName;
-    private String id;
+    private Long id;
     private String taskId;
 }

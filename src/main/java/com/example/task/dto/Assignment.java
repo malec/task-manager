@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Assignment{
-    private String userId;
+    private Long userId;
     private String taskId;
 }

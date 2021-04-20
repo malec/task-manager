@@ -1,6 +1,6 @@
 package com.example.task.controller;
 
-import com.example.task.dto.User;
+import com.example.task.dto.UserDto;
 import com.example.task.service.UserService;
 import com.google.gson.Gson;
 import lombok.var;
@@ -40,7 +40,7 @@ public class UserControllerTest {
      */
     @Test
     public void createShouldCallService() throws Exception {
-        var user = new User("first", "last", "id", "taskId");
+        var user = new UserDto("first", "last", 1L, "taskId");
         mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(user))).andExpect(status().isOk());
         Mockito.verify(userService).createUser(user);
     }
@@ -51,9 +51,9 @@ public class UserControllerTest {
      */
     @Test
     public void deleteShouldCallService() throws Exception {
-        var user = new User();
-        user.setId("1");
+        var user = new UserDto();
+        user.setId(1L);
         mockMvc.perform(delete("/user").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(user))).andExpect(status().isOk());
-        Mockito.verify(userService).deleteUser("1");
+        Mockito.verify(userService).deleteUser(1L);
     }
 }
