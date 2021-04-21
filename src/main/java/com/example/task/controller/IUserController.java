@@ -1,6 +1,7 @@
 package com.example.task.controller;
 
 import com.example.task.dto.UserDto;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/user")
@@ -10,5 +11,5 @@ public interface IUserController {
     @DeleteMapping()
     void delete(@RequestBody UserDto user);
     @PostMapping("/login")
-    void login(@RequestBody UserDto user);
+    ResponseEntity login(@RequestBody UserDto user);
 }
