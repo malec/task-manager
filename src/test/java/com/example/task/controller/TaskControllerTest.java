@@ -38,7 +38,7 @@ public class TaskControllerTest {
         TaskDto task = new TaskDto();
         task.setTask("write tests");
         Mockito.doAnswer(x -> {
-            Task taskArg = (Task) x.getArguments()[0];
+            TaskDto taskArg = (TaskDto) x.getArguments()[0];
             taskArg.setId(1L);
             return taskArg;
         }).when(taskService).createTask(task);
