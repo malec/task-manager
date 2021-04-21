@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public interface IUserController {
     @PostMapping()
-    void create(@RequestBody UserDto user);
+    UserDto create(@RequestBody UserDto user);
     @DeleteMapping()
     void delete(@RequestBody UserDto user);
 }

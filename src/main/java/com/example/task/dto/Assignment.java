@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Assignment{
     private Long userId;
-    private String taskId;
+    private Long taskId;
 }

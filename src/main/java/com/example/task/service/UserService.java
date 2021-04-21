@@ -1,36 +1,49 @@
 package com.example.task.service;
 
-import com.example.task.dto.UserDto;
+import com.example.task.dto.TaskDto;
 import com.example.task.dto.UserDto;
 import com.example.task.model.User;
 import com.example.task.repository.UserRepository;
 import lombok.var;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class UserService {
     private final UserRepository userRepository;
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    public void createUser(UserDto userDto) {
+
+    public UserDto createUser(UserDto userDto) {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        this.userRepository.save(user);
+        var createResult = this.userRepository.save(user);
+        userDto.setId(createResult.getId());
+        return userDto;
     }
+
     public void deleteUser(Long id) {
-        this.userRepository.deleteById(id);
+        var optUser = this.userRepository.findById(id);
+        optUser.ifPresent(this.userRepository::delete);
     }
-    public void assignTask(Long userId, String taskId) {
+
+    @Transactional
+    public void assignTask(Long userId, Long taskId) {
         var userOptional = this.userRepository.findById(userId);
         if(userOptional.isPresent()) {
-            var user = userOptional.get();
-            user.setTaskId(taskId);
-            this.userRepository.save(user);
+            userRepository.updateUserTaskById(taskId, userId);
         }
     }
+
     public void deleteAssignment(Long userId) {
-//        this.userRepository..get(userId).setTaskId(null);
+        var optUser = this.userRepository.findById(userId);
+        if(optUser.isPresent()) {
+            var user = optUser.get();
+            user.setTask(null);
+            this.userRepository.save(user);
+        }
     }
 }

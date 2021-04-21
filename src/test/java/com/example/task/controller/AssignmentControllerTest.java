@@ -34,8 +34,8 @@ public class AssignmentControllerTest {
 
     @Test
     public void createAssignmentShouldCreateAndReturnOk() throws Exception {
-        mockMvc.perform(post("/assignment").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(new Assignment(1L,"taskId" )))).andExpect(status().isOk());
-        Mockito.verify(userService).assignTask(1L, "task1");
+        mockMvc.perform(post("/assignment").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(new Assignment(1L,1L )))).andExpect(status().isOk());
+        Mockito.verify(userService).assignTask(1L, 1L);
     }
 
     @Test

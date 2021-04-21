@@ -15,7 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "firstName")
     private String firstName;
@@ -23,10 +23,6 @@ public class User {
     @Column(name = "lastName")
     private String lastName;
 
-    @Column(name="taskId")
-    private String taskId;
-
-    @OneToOne(targetEntity = Task.class)
-    @JoinColumn(name="id", referencedColumnName = "taskId")
+    @OneToOne()
     private Task task;
 }

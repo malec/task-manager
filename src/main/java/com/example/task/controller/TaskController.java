@@ -1,6 +1,6 @@
 package com.example.task.controller;
 
-import com.example.task.dto.Task;
+import com.example.task.dto.TaskDto;
 import com.example.task.service.TaskService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +18,7 @@ public class TaskController implements ITaskController {
      * @return
      */
     @Override
-    public Task create(Task task) {
+    public TaskDto create(TaskDto task) {
         return this.taskService.createTask(task);
     }
 
@@ -26,7 +26,7 @@ public class TaskController implements ITaskController {
      * @param task Task DTO with id to delete by
      */
     @Override
-    public void delete(Task task) {
+    public void delete(TaskDto task) {
         this.taskService.deleteTask(task.getId());
     }
 }

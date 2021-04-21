@@ -1,6 +1,7 @@
 package com.example.task.controller;
 
-import com.example.task.dto.Task;
+import com.example.task.dto.TaskDto;
+import com.example.task.model.Task;
 import com.example.task.service.TaskService;
 import com.google.gson.Gson;
 import org.junit.Before;
@@ -34,20 +35,20 @@ public class TaskControllerTest {
 
     @Test
     public void createTaskShouldCreateAndReturnOk() throws Exception {
-        Task task = new Task();
+        TaskDto task = new TaskDto();
         task.setTask("write tests");
         Mockito.doAnswer(x -> {
             Task taskArg = (Task) x.getArguments()[0];
-            taskArg.setId("1");
+            taskArg.setId(1L);
             return taskArg;
         }).when(taskService).createTask(task);
         mockMvc.perform(MockMvcRequestBuilders.post("/task")
-                .contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(task))).andExpect(status().isOk()).andExpect(jsonPath("task", is("write tests"))).andExpect(jsonPath("id", is("1")));
+                .contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(task))).andExpect(status().isOk()).andExpect(jsonPath("task", is("write tests"))).andExpect(jsonPath("id", is(1)));
     }
 
     @Test
     public void deleteTaskShouldCallServiceToDelete() throws Exception {
-        Task task = new Task("userId", "write tests");
+        TaskDto task = new TaskDto(1L, "write tests");
         mockMvc.perform(MockMvcRequestBuilders.post("/task")
                 .contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(task))).andExpect(status().isOk());
         Mockito.verify(taskService).createTask(task);

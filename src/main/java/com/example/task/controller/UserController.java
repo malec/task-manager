@@ -1,7 +1,9 @@
 package com.example.task.controller;
 
+import com.example.task.dto.TaskDto;
 import com.example.task.dto.UserDto;
 import com.example.task.service.UserService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,8 +20,8 @@ public class UserController implements IUserController {
      * Create a user via UserService
      */
     @Override
-    public void create(UserDto user) {
-        this.userService.createUser(user);
+    public UserDto create(UserDto user) {
+        return this.userService.createUser(user);
     }
 
     /**
