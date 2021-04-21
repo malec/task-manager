@@ -14,6 +14,10 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
+    /**
+     * @param taskDto task dto to be created
+     * @return task dto with id created.
+     */
     public TaskDto createTask(TaskDto taskDto) {
         Task task = new Task();
         task.setTask(taskDto.getTask());
@@ -22,6 +26,9 @@ public class TaskService {
         return taskDto;
     }
 
+    /**
+     * @param taskId task id to delete
+     */
     public void deleteTask(Long taskId) {
         var optTask = this.taskRepository.findById(taskId);
         optTask.ifPresent(task -> this.taskRepository.delete(task));

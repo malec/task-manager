@@ -37,6 +37,10 @@ public class UserController implements IUserController {
         this.userService.deleteUser(user.getId());
     }
 
+    /**
+     * @param user user with id and password to authenticate
+     * @return 200 if success, 401 if an invalid password is provided
+     */
     @Override
     public ResponseEntity<String> login(UserDto user) {
         var success = userService.login(user.getId(), user.getPassword());

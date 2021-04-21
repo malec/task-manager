@@ -19,6 +19,10 @@ public class UserService {
         this.passwordEncoder =  passwordEncoder;
     }
 
+    /**
+     * @param userDto user to be created. all fields except id and task required
+     * @return user with created id set
+     */
     public UserDto createUser(UserDto userDto) {
         User user = new User();
         user.setFirstName(userDto.getFirstName());
@@ -29,11 +33,18 @@ public class UserService {
         return userDto;
     }
 
+    /**
+     * @param id user id to be deleted. will not delete task assigned to user
+     */
     public void deleteUser(Long id) {
         var optUser = this.userRepository.findById(id);
         optUser.ifPresent(this.userRepository::delete);
     }
 
+    /**
+     * @param userId user id to own the task
+     * @param taskId task id to be owned
+     */
     @Transactional
     public void assignTask(Long userId, Long taskId) {
         var userOptional = this.userRepository.findById(userId);
@@ -42,6 +53,9 @@ public class UserService {
         }
     }
 
+    /**
+     * @param userId to remove assignment
+     */
     public void deleteAssignment(Long userId) {
         var optUser = this.userRepository.findById(userId);
         if(optUser.isPresent()) {
