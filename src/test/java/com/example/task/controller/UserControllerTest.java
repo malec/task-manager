@@ -40,7 +40,7 @@ public class UserControllerTest {
      */
     @Test
     public void createShouldCallService() throws Exception {
-        var user = new UserDto("first", "last", 1L, "taskId");
+        var user = new UserDto("first", "last", 1L, "taskId", "password1");
         mockMvc.perform(post("/user").contentType(MediaType.APPLICATION_JSON).content(new Gson().toJson(user))).andExpect(status().isOk());
         Mockito.verify(userService).createUser(user);
     }

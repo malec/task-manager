@@ -12,4 +12,5 @@ public class UserDto {
     private String lastName;
     private Long id;
     private String taskId;
+    private String password;
 }

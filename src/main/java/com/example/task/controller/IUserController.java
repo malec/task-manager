@@ -9,4 +9,6 @@ public interface IUserController {
     UserDto create(@RequestBody UserDto user);
     @DeleteMapping()
     void delete(@RequestBody UserDto user);
+    @PostMapping("/login")
+    void login(@RequestBody UserDto user);
 }

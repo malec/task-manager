@@ -25,4 +25,7 @@ public class User {
 
     @OneToOne()
     private Task task;
+
+    @Column(name="password")
+    private String password;
 }
